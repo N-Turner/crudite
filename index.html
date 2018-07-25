@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My CrUDdy App</title>
-    <!--
-    TODO
-    add link to css
-    add link to our app
-    -->
+    <title>Automatic Storyboard Layout Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="app.js"></script>
 
   </head>
   <body>
-    <div class="container">
+      <div class="overlay">
+          <div class="overlay-inner">
+            <button class="close">× Close</button>
+            <input class="input-field-title" type="text" name="item" placeholder="Enter a caption!">
+            <button class="caption">Add Caption</button>
+            <button class="delete-caption">Delete Caption</button>
+            <img>
+          </div>
+        </div>
+      
+        <section class="gallery">
+        </section>
+    <!--<div class="container">
 
           <input class="input-field-title" type="text" placeholder="Enter the Title">
-          <textarea class="input-field-body" placeholder="Enter the content"></textarea> <!-- maybe switch to <div id='fake_textarea' contenteditable></div>-->
+          <textarea class="input-field-body" placeholder="Enter the content"></textarea>
           <button class="store-btn">store data</button>
           <button class="get-btn">get data</button>
           <button class="delete-btn">delete data</button>
@@ -27,7 +38,20 @@
       <div class="item-display">
 
       </div>
-    </div>
-
+    </div>-->
+    <!-- <script>
+        $(document).ready(function () {
+            var currentContent = $('.titleValue').text();
+        
+            if(localStorage.getItem('.input-field-title') != currentContent) {
+            }
+        
+            localStorage.setItem('.input-field-title', currentContent);
+        
+            setTimeout(function(){
+                window.location.reload(false);
+            }, 10000);
+        });
+        </script> -->
   </body>
 </html>

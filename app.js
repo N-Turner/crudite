@@ -1,46 +1,68 @@
 $(document).ready(function(){
 
-  //to pull up all storage values use
-  // localStorage.length as your array length
-  // localStorage.key(index) to access by number
-  // that returns a list of keys
-
-  // attach event listener to buttons(input?)
-  // create function stub for read/write/delete
-    // research local storage
-
-  // $().on('click', function(){
-  //
-  // });
-
-  $('.store-btn').on('click', function(event){
+  $('.caption').on('click', function(event){
     let titleValue = $('.input-field-title').val();
-    let contentValue = $('.input-field-body').val();
+    
+    localStorage.getItem('titleValue');
     localStorage.setItem('titleValue', titleValue);
-    localStorage.setItem('contentValue', contentValue);
-
   });
 
-  $('.get-btn').on('click', function(event){
-    //console.log(localStorage.getItem('hrext'));
-    let titleValue = localStorage.getItem('titleValue');
-    let contentValue = localStorage.getItem('contentValue');
-
-    $('.debug').html(`<p>${titleValue} ${contentValue}</p>`);
-
-  });
-
-  $('.delete-btn').on('click', function(event){
-    // TODO add in a confirm
-    // throw up .confirm window
-    // capture result
-    // test boolean to delete or not
+  $('.delete-caption').on('click', function(event){
     localStorage.removeItem('titleValue');
-    localStorage.removeItem('contentValue');
-    $('.debug').html(`<p>Items deleted</p>`);
-
-
   });
 
+  const gallery = document.querySelector('.gallery');
+  const overlay = document.querySelector('.overlay');
+  const overlayImage = overlay.querySelector('img');
+  const overlayClose = overlay.querySelector('.close');
+
+  // Generate random layout within Gallery section
+  const generateHTML = ([horizontal, vertical]) => {
+    return `
+    <div class="item h${horizontal} v${vertical}">
+    <img src="images/${randomNumber(14)}.jpg">
+      <div class="item__overlay">
+        <button>View Image →</button>
+        <div class="text-pop">${localStorage.titleValue}</div>
+      </div>
+    </div>
+    `;
+  }
+    // Random generator to be called inside generateHTML for images div
+    const randomNumber = (limit) => {
+      return Math.floor(Math.random() * limit) + 1;
+    }
+
+    const handleClick = (e) => {
+      let src = e.currentTarget.querySelector('img').src;
+      overlayImage.src = src;
+      open();
+    }
+
+    const open = () => {
+      overlay.classList.add('open');
+    }
+
+    const close = () => {
+      overlay.classList.remove('open');
+    }
+
+    const digits = Array.from({ length: 50 }, () => [randomNumber(4), randomNumber(4)]).concat([[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1]])
+
+    const html = digits.map(generateHTML).join('');
+    gallery.innerHTML = html;
+
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => item.addEventListener('click',
+    handleClick));
+
+    overlayClose.addEventListener('click', close);
+    // Update caption after adding new text
+    $('.caption').click(function() {
+      // AJAX
+      //$(`${gallery.innerHTML}`).load('.text-pop');
+      location.reload(false);
+    });
 
 });

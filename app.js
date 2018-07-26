@@ -60,8 +60,10 @@ $(document).ready(function(){
     overlayClose.addEventListener('click', close);
     // Update caption after adding new text
     $('.caption').click(function() {
-      // AJAX
-      //$(`${gallery.innerHTML}`).load('.text-pop');
+      location.reload(false);
+    });
+
+    $('.shuffle-butt').click(function() {
       location.reload(false);
     });
 

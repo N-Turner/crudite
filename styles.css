@@ -30,6 +30,37 @@ p {
 /* ==========================================
   STRUCTURE
 ============================================*/ 
+.layout {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-rows: 300px 150px 150px;
+  grid-template-areas:
+    "sidebar-1  content   sidebar-2"
+    "sidebar-1  content   sidebar-2"
+    "footer     footer    footer" 
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.sidebar {
+  display: grid;
+  grid-area: sidebar-1;
+  justify-items: center;
+  align-items: start;
+  background-color: #00f7ff32;
+}
+
+.content {
+  grid-area: content;
+}
+
+.sidebar-2 {
+  grid-area: sidebar-2;
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, 100px);
@@ -103,7 +134,10 @@ p {
 }
 
 .overlay {
-  position: fixed;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  position: relative;
   background: rgba(0, 0, 0, 0.7);
   top: 0;
   right: 0;
@@ -152,4 +186,16 @@ p {
 
 button:hover {
   cursor: pointer;
+}
+
+.shuffle-butt {
+  text-decoration-color: white;
+  text-transform: uppercase;
+  border-radius: 20%;
+  margin: 10px
+}
+
+.shuffle-butt:hover {
+  background-color: #fbff0095;
+  color: white;
 }
